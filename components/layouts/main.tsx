@@ -17,9 +17,7 @@ const Main = ({ children, router, title }: Props) => {
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
       </Head>
       <NavBar path={router.asPath} />
-      <Container maxW="container.md" pt={14}>
-        {children}
-      </Container>
+      <Box pt="5rem">{children}</Box>
     </Box>
   );
 };

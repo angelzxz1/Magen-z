@@ -1,0 +1,7 @@
+@font-face {
+    font-family: "Generica";
+    src: url("/fonts/Generica.otf");
+}
+*{
+    font-family: "Generica" !important;
+}
