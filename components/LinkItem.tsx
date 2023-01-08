@@ -17,6 +17,7 @@ const LinkItem = ({ href, path, children, w }: props) => {
         transition: "transform 0.1s ease-in-out, width 0.3s ease-in-out",
         borderRadius: "md",
         textAlign: "center",
+        fontWeight: "bold",
         _hover: {
             textDecoration: "none",
             transform: "scale(1.3)",
