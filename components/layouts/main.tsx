@@ -24,7 +24,7 @@ const Main = ({ children, router, title }: Props) => {
                 />
             </Head>
             <NavBar path={router.asPath} />
-            <Box pt="5rem">{children}</Box>
+            <Box>{children}</Box>
         </Box>
     );
 };

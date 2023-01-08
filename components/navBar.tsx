@@ -79,7 +79,10 @@ const NavBar = ({ path }: props) => {
                         justify="center"
                     >
                         <Img
-                            src="/pictures/Logos/White.svg"
+                            src={useColorModeValue(
+                                "/pictures/Logos/Black.svg",
+                                "/pictures/Logos/White.svg"
+                            )}
                             cursor="pointer"
                             maxWidth="50px"
                             animation={`${rotation} 25s infinite linear`}
@@ -107,6 +110,7 @@ const NavBar = ({ path }: props) => {
                         Contact
                     </LinkItem>
                 </Flex>
+                <ThemeToggleButton />
             </Flex>
         </Flex>
     );
