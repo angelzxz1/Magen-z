@@ -4,22 +4,29 @@ import NavBar from "../navBar";
 import type { Router } from "next/dist/client/router";
 //                  next/app/dist/pages/client/router
 type Props = {
-  children: JSX.Element;
-  router: Router;
-  title: string;
+    children: JSX.Element;
+    router: Router;
+    title: string;
 };
 const Main = ({ children, router, title }: Props) => {
-  return (
-    <Box as="main">
-      <Head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-      </Head>
-      <NavBar path={router.asPath} />
-      <Box pt="5rem">{children}</Box>
-    </Box>
-  );
+    return (
+        <Box as="main">
+            <Head>
+                <meta charSet="utf-8" />
+                <meta
+                    name="viewport"
+                    content="initial-scale=1.0, width=device-width"
+                />
+                <link
+                    rel="shortcut icon"
+                    href="/favicon.ico"
+                    type="image/x-icon"
+                />
+            </Head>
+            <NavBar path={router.asPath} />
+            <Box pt="5rem">{children}</Box>
+        </Box>
+    );
 };
 
 export default Main;

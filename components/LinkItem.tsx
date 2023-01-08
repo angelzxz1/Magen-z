@@ -5,14 +5,14 @@ type props = {
     href: string;
     path: string;
     children: any;
-    ref: any;
+    w?: number;
 };
 
-const LinkItem = ({ href, path, children, ref }: props) => {
+const LinkItem = ({ href, path, children, w }: props) => {
     const active = path === href;
     const color = useColorModeValue("black", "#f8f0ff");
     const LinkStyle: {} = {
-        w: "25%",
+        w: `${w}%`,
         color: color,
         transition: "transform 0.1s ease-in-out, width 0.3s ease-in-out",
         borderRadius: "md",
@@ -24,9 +24,7 @@ const LinkItem = ({ href, path, children, ref }: props) => {
     };
     return (
         <NextLink href={href} passHref>
-            <Link {...LinkStyle} ref={ref}>
-                {children}
-            </Link>
+            <Link {...LinkStyle}>{children}</Link>
         </NextLink>
     );
 };

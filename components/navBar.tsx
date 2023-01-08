@@ -25,7 +25,7 @@ import { HamburgerIcon } from "@chakra-ui/icons";
 import ThemeToggleButton from "./ThemeToggleButton";
 import type { Router } from "next/dist/client/router"; //I use this import just to not use an any type
 import LinkItem from "./LinkItem";
-import { useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
 
 type props = {
     path: string;
@@ -39,12 +39,9 @@ let rotation = keyframes`
 }
 `;
 const NavBar = ({ path }: props) => {
-    const logo = useRef<any>();
-    const link1 = useRef<any>();
-    const link2 = useRef<any>();
-    const link3 = useRef<any>();
+    const [w, setW] = useState(25);
     useEffect(() => {
-        console.log(logo);
+        console.clear();
         window.onscroll = function () {
             scrollFunction();
         };
@@ -53,15 +50,9 @@ const NavBar = ({ path }: props) => {
                 document.body.scrollTop > 80 ||
                 document.documentElement.scrollTop > 80
             ) {
-                logo.current.style.width = "10%";
-                link1.current.style.width = "10%";
-                link2.current.style.width = "10%";
-                link3.current.style.width = "10%";
+                setW(10);
             } else {
-                logo.current.style.width = "25%";
-                link1.current.style.width = "25%";
-                link2.current.style.width = "25%";
-                link3.current.style.width = "25%";
+                setW(25);
             }
         }
     });
@@ -80,22 +71,39 @@ const NavBar = ({ path }: props) => {
         >
             <Flex w="50%">
                 <Flex w="100%" align="center">
-                    <Box w="25%">
+                    <Flex
+                        w={`${w}%`}
+                        transition="width 0.3s ease-in-out"
+                        position="relative"
+                        align="center"
+                        justify="center"
+                    >
                         <Img
-                            ref={logo}
                             src="/pictures/Logos/White.svg"
                             cursor="pointer"
                             maxWidth="50px"
                             animation={`${rotation} 25s infinite linear`}
                         />
-                    </Box>
-                    <LinkItem href="/" path={path} ref={link1}>
+                        <Box
+                            position="absolute"
+                            cursor="pointer"
+                            transition="transform 0.1s ease-in-out"
+                            _hover={{
+                                transform: "scale(1.3)",
+                            }}
+                        >
+                            <LinkItem href="/" path={path}>
+                                Home
+                            </LinkItem>
+                        </Box>
+                    </Flex>
+                    <LinkItem href="/about" path={path} w={w}>
                         About
                     </LinkItem>
-                    <LinkItem href="/" path={path} ref={link2}>
+                    <LinkItem href="/projects" path={path} w={w}>
                         Projects
                     </LinkItem>
-                    <LinkItem href="/" path={path} ref={link3}>
+                    <LinkItem href="/contact" path={path} w={w}>
                         Contact
                     </LinkItem>
                 </Flex>
