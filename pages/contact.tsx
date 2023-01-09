@@ -24,6 +24,7 @@ const Contact = () => {
                 >
                     Contact Page under construction
                 </Box>
+
                 <SpinnigLogo top="50%" left="50%" />
             </Section>
         </>
