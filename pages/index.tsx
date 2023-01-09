@@ -1,6 +1,7 @@
 import { Box, Flex, keyframes, useColorModeValue } from "@chakra-ui/react";
 import Bars from "../components/Home/Bars";
 import Section from "../components/Section";
+import Head from "next/head";
 
 const incli = "-30deg";
 const rotate = keyframes`
@@ -92,66 +93,71 @@ const Carrousel = (): JSX.Element => {
 };
 const Home = (): JSX.Element => {
     return (
-        <Box
-            as="main"
-            color="aliceblue"
-            display="flex"
-            justify-content="right"
-            position="relative"
-            flexDirection="column"
-        >
-            <Section odd>
-                <Bars />
-                <Flex
-                    bg={useColorModeValue("#00000008", "#ffffff01")}
-                    borderRadius="1rem"
-                    w={{ base: "90%", md: "auto" }}
-                    display="flex"
-                    justify="center"
-                    align="center"
-                    position="absolute"
-                    left={{ base: "5%", md: "" }}
-                    top="38%"
-                    fontSize="2rem"
-                    backdropFilter="blur(15px)"
-                    padding="1rem"
-                    border={useColorModeValue(
-                        "2px solid #ffffff",
-                        "2px solid #ffffff0a"
-                    )}
-                    letterSpacing="1.5rem"
-                    textIndent=" 1.5rem"
-                    color={useColorModeValue("black", "white")}
-                >
-                    Magen-z
-                </Flex>
-                <Flex
-                    w={{ base: "90%", md: "35vw" }}
-                    h={{ base: "80vw", md: "35vw" }}
-                    bg={useColorModeValue("#ffffff33", "#00000033")}
-                    borderRadius="1rem"
-                    justify="center"
-                    align="center"
-                    direction="column"
-                    position={{ base: "relative", md: "absolute" }}
-                    right={{ base: "", md: "5%" }}
-                    top={{ base: "", md: "15%" }}
-                    backdropFilter="blur(15px)"
-                    border={useColorModeValue(
-                        "2px solid #ffffff8a",
-                        "2px solid #ffffff0a"
-                    )}
-                    overflow="hidden"
-                    textAlign="justify"
-                    fontSize="1rem"
-                    padding="1.5rem"
-                    letterSpacing="0.1rem"
-                >
-                    <Carrousel />
-                </Flex>
-            </Section>
-            <Section>test</Section>
-        </Box>
+        <>
+            <Head>
+                <title>Magen-z dev</title>
+            </Head>
+            <Box
+                as="main"
+                color="aliceblue"
+                display="flex"
+                justify-content="right"
+                position="relative"
+                flexDirection="column"
+            >
+                <Section odd>
+                    <Bars />
+                    <Flex
+                        bg={useColorModeValue("#00000008", "#ffffff01")}
+                        borderRadius="1rem"
+                        w={{ base: "90%", md: "auto" }}
+                        display="flex"
+                        justify="center"
+                        align="center"
+                        position="absolute"
+                        left={{ base: "5%", md: "" }}
+                        top="38%"
+                        fontSize="2rem"
+                        backdropFilter="blur(15px)"
+                        padding="1rem"
+                        border={useColorModeValue(
+                            "2px solid #ffffff",
+                            "2px solid #ffffff0a"
+                        )}
+                        letterSpacing="1.5rem"
+                        textIndent=" 1.5rem"
+                        color={useColorModeValue("black", "white")}
+                    >
+                        Magen-z
+                    </Flex>
+                    <Flex
+                        w={{ base: "90%", md: "35vw" }}
+                        h={{ base: "80vw", md: "35vw" }}
+                        bg={useColorModeValue("#ffffff33", "#00000033")}
+                        borderRadius="1rem"
+                        justify="center"
+                        align="center"
+                        direction="column"
+                        position={{ base: "relative", md: "absolute" }}
+                        right={{ base: "", md: "5%" }}
+                        top={{ base: "", md: "15%" }}
+                        backdropFilter="blur(15px)"
+                        border={useColorModeValue(
+                            "2px solid #ffffff8a",
+                            "2px solid #ffffff0a"
+                        )}
+                        overflow="hidden"
+                        textAlign="justify"
+                        fontSize="1rem"
+                        padding="1.5rem"
+                        letterSpacing="0.1rem"
+                    >
+                        <Carrousel />
+                    </Flex>
+                </Section>
+                <Section>test</Section>
+            </Box>
+        </>
     );
 };
 export default Home;

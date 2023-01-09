@@ -22,6 +22,11 @@ const Main = ({ children, router, title }: Props) => {
                     href="/favicon.ico"
                     type="image/x-icon"
                 />
+                <link
+                    rel="icon"
+                    type="image/png"
+                    href="/pictures/Logos/favicon.ico"
+                />
             </Head>
             <NavBar path={router.asPath} />
             <Box>{children}</Box>
