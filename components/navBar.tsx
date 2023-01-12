@@ -13,19 +13,68 @@ import {
     Stack,
     Heading,
     Flex,
-    Menu,
-    MenuItem,
-    MenuList,
-    MenuButton,
     useColorModeValue,
     IconButton,
     Img,
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import ThemeToggleButton from "./ThemeToggleButton";
-import type { Router } from "next/dist/client/router"; //I use this import just to not use an any type
-import LinkItem from "./LinkItem";
+// import type { Router } from "next/dist/client/router";
+import { LinkItem, MenuLinkItem } from "./LinkItem";
 import { useEffect, useState } from "react";
+
+const MenuButton = ({ path }: { path: string }) => {
+    const [isShowing, setIsShowing] = useState<boolean>(false);
+    const [opacity, setOpacity] = useState<string>("0");
+    return (
+        <Box
+            ml={2}
+            display={{ base: "inline-block", md: "none" }}
+            position="relative"
+        >
+            <IconButton
+                icon={<HamburgerIcon />}
+                variant="outline"
+                aria-label="Options"
+                colorScheme={useColorModeValue("purple", "teal")}
+                onClick={(e) => {
+                    setIsShowing((prev) => !prev);
+                    setOpacity((prev) => (prev === "0" ? "1" : "0"));
+                }}
+            />
+            <Flex
+                position="absolute"
+                direction="column"
+                mt={1}
+                zIndex={99}
+                right="0"
+                align="center"
+                backdropFilter="blur(5px)"
+                bg={useColorModeValue("#ffffff65", "#00000065")}
+                borderRadius="md"
+                borderWidth="1px"
+                borderColor={useColorModeValue("teal.200", "purple.200")}
+                overflow="hidden"
+                display={isShowing ? "Flex" : "none"}
+                opacity={opacity}
+                transition="opacity 250ms ease-in-out"
+            >
+                <MenuLinkItem href="/" path={path}>
+                    Home
+                </MenuLinkItem>
+                <MenuLinkItem href="/about" path={path}>
+                    About
+                </MenuLinkItem>
+                <MenuLinkItem href="/projects" path={path}>
+                    Projects
+                </MenuLinkItem>
+                <MenuLinkItem href="/contact" path={path}>
+                    Contact
+                </MenuLinkItem>
+            </Flex>
+        </Box>
+    );
+};
 
 type props = {
     path: string;
@@ -69,8 +118,16 @@ const NavBar = ({ path }: props) => {
             zIndex="100"
             boxShadow="0 0 10px #00000035"
         >
-            <Flex w="50%">
-                <Flex w="100%" align="center">
+            <Flex
+                w={{ base: "90%", md: "50%" }}
+                alignItems="center"
+                justifyContent="space-between"
+            >
+                <Flex
+                    w="100%"
+                    align="center"
+                    display={{ base: "none", md: "flex" }}
+                >
                     <Flex
                         w={`${w}%`}
                         transition="width 0.3s ease-in-out"
@@ -110,7 +167,10 @@ const NavBar = ({ path }: props) => {
                         Contact
                     </LinkItem>
                 </Flex>
-                <ThemeToggleButton />
+                <Flex flex={1} justify="end">
+                    <ThemeToggleButton />
+                    <MenuButton path={path} />
+                </Flex>
             </Flex>
         </Flex>
     );
