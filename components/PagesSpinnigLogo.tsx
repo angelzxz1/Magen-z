@@ -21,19 +21,14 @@ const zoomIn = keyframes`
     }
 `;
 
-const SpinnigLogo = ({
-    top = "50%",
-    left = "50%",
-}: SpinnigLogoProps): JSX.Element => {
+const SpinnigLogo = ({}: SpinnigLogoProps): JSX.Element => {
     return (
         <Box
             position="absolute"
             w="100%"
             h="100%"
             zIndex={1}
-            top={top}
-            left={left}
-            animation={`${zoomIn} 2s ease-in-out forwards`}
+            animation={`${zoomIn} 500ms ease-in-out forwards`}
         >
             <Box
                 as="svg"
@@ -41,6 +36,8 @@ const SpinnigLogo = ({
                 transform="translate(-50%, -50%)"
                 width="500"
                 height="500"
+                top="50%"
+                left="50%"
                 viewBox="0 0 500 500"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"

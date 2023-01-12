@@ -24,6 +24,26 @@ const topMovement = keyframes`
         top:25%;
     }
 `;
+const anchoBase = keyframes`
+    0%{
+        width: 0%;
+        opacity:1;
+    }
+    100%{
+        width: 90%;
+        opacity:1;
+    }
+`;
+const anchoMD = keyframes`
+    0%{
+        width: 0%;
+        opacity:1;
+    }
+    100%{
+        width: 45%;
+        opacity:1;
+    }
+`;
 
 interface CarrouselCardProps {
     i: number;
@@ -35,8 +55,8 @@ const CarrouselCard = ({
 }: CarrouselCardProps): JSX.Element => {
     return (
         <Box
-            h="200px"
-            w="200px"
+            h={{ base: "160px", md: "200px" }}
+            w={{ base: "160px", md: "200px" }}
             position="absolute"
             bg={useColorModeValue(
                 "linear-gradient(#ededed88, 40%,#096b4a)",
@@ -45,11 +65,14 @@ const CarrouselCard = ({
             // #40edb5
             // #0a1713
             top="1000px"
-            transform={
-                tapa
+            transform={{
+                base: tapa
                     ? `rotateY(${(i - 8) * 45}deg)`
-                    : `rotateY(${i * 135}deg) translateZ(100px)`
-            }
+                    : `rotateY(${i * 135}deg) translateZ(80px)`,
+                md: tapa
+                    ? `rotateY(${(i - 8) * 45}deg)`
+                    : `rotateY(${i * 135}deg) translateZ(100px)`,
+            }}
             animation={`${topMovement} 1s ease-in-out forwards calc(100ms * ${i})`}
         />
     );
@@ -110,16 +133,19 @@ const Home = (): JSX.Element => {
                     <Flex
                         bg={useColorModeValue("#00000008", "#ffffff01")}
                         borderRadius="1rem"
-                        w={{ base: "90%", md: "auto" }}
+                        overflow="hidden"
+                        w="0"
+                        opacity="0"
                         display="flex"
                         justify="center"
                         align="center"
                         position="absolute"
                         left={{ base: "5%", md: "" }}
-                        top="38%"
-                        fontSize="2rem"
+                        top={{ base: "20%", md: "40%" }}
+                        fontSize={{ base: "1rem", md: "2rem" }}
                         backdropFilter="blur(15px)"
                         padding="1rem"
+                        py="2rem"
                         border={useColorModeValue(
                             "2px solid #ffffff",
                             "2px solid #ffffff0a"
@@ -127,8 +153,19 @@ const Home = (): JSX.Element => {
                         letterSpacing="1.5rem"
                         textIndent=" 1.5rem"
                         color={useColorModeValue("black", "white")}
+                        animation={{
+                            base: `${anchoBase} 500ms ease-in-out forwards 1s`,
+                            md: `${anchoMD} 500ms ease-in-out forwards 1s`,
+                        }}
                     >
-                        Magen-z
+                        <Flex
+                            position="absolute"
+                            w="1000px"
+                            justify="center"
+                            align="center"
+                        >
+                            Magen-z
+                        </Flex>
                     </Flex>
                     <Flex
                         w={{ base: "90%", md: "35vw" }}
@@ -141,6 +178,7 @@ const Home = (): JSX.Element => {
                         position={{ base: "relative", md: "absolute" }}
                         right={{ base: "", md: "5%" }}
                         top={{ base: "", md: "15%" }}
+                        bottom={{ base: "5%", md: "" }}
                         backdropFilter="blur(15px)"
                         border={useColorModeValue(
                             "2px solid #ffffff8a",

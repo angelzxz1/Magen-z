@@ -8,7 +8,31 @@ type props = {
     w?: number;
 };
 
-const LinkItem = ({ href, path, children, w }: props) => {
+export const MenuLinkItem = ({ href, path, children }: props) => {
+    // const active = path === href;
+    const LinkStyle: {} = {
+        color: useColorModeValue("black", "#f8f0ff"),
+        // bg: "pink",
+        transition: "transform 0.1s ease-in-out, background 150ms ease-in-out",
+        w: "full",
+        px: "1.5rem",
+        py: "0.8rem",
+        textAlign: "center",
+        fontWeight: "bold",
+        mx: "2px",
+        _hover: {
+            textDecoration: "none",
+            bg: useColorModeValue("teal.200", "purple.200"),
+        },
+    };
+    return (
+        <NextLink href={href} passHref>
+            <Link {...LinkStyle}>{children}</Link>
+        </NextLink>
+    );
+};
+
+export const LinkItem = ({ href, path, children, w }: props) => {
     const active = path === href;
     const color = useColorModeValue("black", "#f8f0ff");
     const LinkStyle: {} = {
