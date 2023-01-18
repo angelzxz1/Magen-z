@@ -121,9 +121,10 @@ const Home = (): JSX.Element => {
     useEffect(() => {
         const resize = () => {
             const aspectRatio = window.innerWidth / window.innerHeight;
-            console.log(aspectRatio);
+            // console.log(aspectRatio);
             setAspectRatio(aspectRatio);
         };
+        resize();
         window.addEventListener("resize", resize);
     }, []);
     return (
@@ -232,9 +233,55 @@ const Home = (): JSX.Element => {
                         <Carrousel />
                     </Flex>
                 </Section>
-                <Section>test</Section>
+                <Section>
+                    <Gradiante />
+                </Section>
             </Box>
         </>
     );
 };
 export default Home;
+
+const Gradiante = () => {
+    const [deg, setDeg] = useState(0);
+    const [deg2, setDeg2] = useState(60);
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setDeg((deg) => deg + 1);
+            setDeg2((deg2) => deg2 + 1);
+        }, 10);
+        return () => clearInterval(interval);
+    }, [deg, deg2]);
+    return (
+        <Flex
+            w="100%"
+            h="100%"
+            justify="center"
+            align="center"
+            position="relative"
+        >
+            <Flex
+                w={{ base: "250px", md: "500px" }}
+                h={{ base: "250px", md: "500px" }}
+                borderRadius="50%"
+                bg={`radial-gradient( hsl(${deg2},50%,50%), hsl(${deg},50%,50%),  rgba(0,0,0,0),rgba(0,0,0,0))`}
+                justify="center"
+                align="center"
+            >
+                <Box
+                    as="p"
+                    position="absolute"
+                    color={useColorModeValue("black", "white")}
+                    fontSize="1.5rem"
+                    fontWeight="bold"
+                    letterSpacing="0.5rem"
+                    textTransform="uppercase"
+                    textAlign="center"
+                    lineHeight="1.5"
+                >
+                    Most of the time I create stuff like this
+                </Box>
+            </Flex>
+        </Flex>
+    );
+};
