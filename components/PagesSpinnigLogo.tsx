@@ -43,7 +43,7 @@ const SpinnigLogo = ({}: SpinnigLogoProps): JSX.Element => {
                 xmlns="http://www.w3.org/2000/svg"
                 animation={`${rotation} 200s linear infinite`}
             >
-                <g clip-path="url(#clip0_11_96)">
+                <g clipPath="url(#clip0_11_96)">
                     <rect
                         x="1.41421"
                         y="250"
@@ -51,7 +51,7 @@ const SpinnigLogo = ({}: SpinnigLogoProps): JSX.Element => {
                         height="351.553"
                         transform="rotate(-45 1.41421 250)"
                         stroke={useColorModeValue("black", "white")}
-                        stroke-width="2"
+                        strokeWidth="2"
                     />
                     <rect
                         x="74.2234"
@@ -59,7 +59,7 @@ const SpinnigLogo = ({}: SpinnigLogoProps): JSX.Element => {
                         width="351.553"
                         height="351.553"
                         stroke={useColorModeValue("black", "white")}
-                        stroke-width="2"
+                        strokeWidth="2"
                     />
                     <line
                         x1="73"
@@ -67,7 +67,7 @@ const SpinnigLogo = ({}: SpinnigLogoProps): JSX.Element => {
                         x2="427"
                         y2="249"
                         stroke={useColorModeValue("black", "white")}
-                        stroke-width="2"
+                        strokeWidth="2"
                     />
                     <line
                         x1="249"
@@ -75,7 +75,7 @@ const SpinnigLogo = ({}: SpinnigLogoProps): JSX.Element => {
                         x2="249"
                         y2="73"
                         stroke={useColorModeValue("black", "white")}
-                        stroke-width="2"
+                        strokeWidth="2"
                     />
                     <line
                         x1="124.135"
@@ -83,7 +83,7 @@ const SpinnigLogo = ({}: SpinnigLogoProps): JSX.Element => {
                         x2="374.451"
                         y2="124.135"
                         stroke={useColorModeValue("black", "white")}
-                        stroke-width="2"
+                        strokeWidth="2"
                     />
                     <line
                         x1="374.451"
@@ -91,7 +91,7 @@ const SpinnigLogo = ({}: SpinnigLogoProps): JSX.Element => {
                         x2="124.135"
                         y2="125.549"
                         stroke={useColorModeValue("black", "white")}
-                        stroke-width="2"
+                        strokeWidth="2"
                     />
                 </g>
                 <defs>
