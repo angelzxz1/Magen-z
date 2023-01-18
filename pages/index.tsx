@@ -2,6 +2,7 @@ import { Box, Flex, keyframes, useColorModeValue } from "@chakra-ui/react";
 import Bars from "../components/Home/Bars";
 import Section from "../components/Section";
 import Head from "next/head";
+import { useEffect, useState } from "react";
 
 const incli = "-30deg";
 const rotate = keyframes`
@@ -115,6 +116,16 @@ const Carrousel = (): JSX.Element => {
     );
 };
 const Home = (): JSX.Element => {
+    const [aspectRatio, setAspectRatio] = useState(1);
+
+    useEffect(() => {
+        const resize = () => {
+            const aspectRatio = window.innerWidth / window.innerHeight;
+            console.log(aspectRatio);
+            setAspectRatio(aspectRatio);
+        };
+        window.addEventListener("resize", resize);
+    }, []);
     return (
         <>
             <Head>
@@ -140,9 +151,19 @@ const Home = (): JSX.Element => {
                         justify="center"
                         align="center"
                         position="absolute"
-                        left={{ base: "5%", md: "" }}
-                        top={{ base: "20%", md: "40%" }}
-                        fontSize={{ base: "1rem", md: "2rem" }}
+                        left={
+                            aspectRatio < 1.25 ? "5%" : { base: "5%", md: "" }
+                        }
+                        top={
+                            aspectRatio < 1.25
+                                ? "20%"
+                                : { base: "20%", md: "40%" }
+                        }
+                        fontSize={
+                            aspectRatio < 1.25
+                                ? "1rem"
+                                : { base: "1rem", md: "2rem" }
+                        }
                         backdropFilter="blur(15px)"
                         padding="1rem"
                         py="2rem"
@@ -153,10 +174,14 @@ const Home = (): JSX.Element => {
                         letterSpacing="1.5rem"
                         textIndent=" 1.5rem"
                         color={useColorModeValue("black", "white")}
-                        animation={{
-                            base: `${anchoBase} 500ms ease-in-out forwards 1s`,
-                            md: `${anchoMD} 500ms ease-in-out forwards 1s`,
-                        }}
+                        animation={
+                            aspectRatio < 1.25
+                                ? `${anchoBase} 500ms ease-in-out forwards 1s`
+                                : {
+                                      base: `${anchoBase} 500ms ease-in-out forwards 1s`,
+                                      md: `${anchoMD} 500ms ease-in-out forwards 1s`,
+                                  }
+                        }
                     >
                         <Flex
                             position="absolute"
@@ -168,17 +193,31 @@ const Home = (): JSX.Element => {
                         </Flex>
                     </Flex>
                     <Flex
-                        w={{ base: "90%", md: "35vw" }}
-                        h={{ base: "80vw", md: "35vw" }}
+                        w={
+                            aspectRatio < 1.25
+                                ? "90%"
+                                : { base: "90%", md: "35vw" }
+                        }
+                        h={
+                            aspectRatio < 1.25
+                                ? "80vw"
+                                : { base: "80vw", md: "35vw" }
+                        }
                         bg={useColorModeValue("#ffffff33", "#00000033")}
                         borderRadius="1rem"
                         justify="center"
                         align="center"
                         direction="column"
-                        position={{ base: "relative", md: "absolute" }}
-                        right={{ base: "", md: "5%" }}
-                        top={{ base: "", md: "15%" }}
-                        bottom={{ base: "5%", md: "" }}
+                        position={
+                            aspectRatio < 1.25
+                                ? "relative"
+                                : { base: "relative", md: "absolute" }
+                        }
+                        right={aspectRatio < 1.25 ? "" : { base: "", md: "5%" }}
+                        top={aspectRatio < 1.25 ? "" : { base: "", md: "15%" }}
+                        bottom={
+                            aspectRatio < 1.25 ? "5%" : { base: "5%", md: "" }
+                        }
                         backdropFilter="blur(15px)"
                         border={useColorModeValue(
                             "2px solid #ffffff8a",

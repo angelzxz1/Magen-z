@@ -1,9 +1,11 @@
 import { Box, useColorModeValue } from "@chakra-ui/react";
+
 interface SectionProps {
     odd?: boolean;
     children?: JSX.Element | JSX.Element[] | string | number | undefined;
     justify?: string;
 }
+
 const Section = ({
     odd = false,
     children,
