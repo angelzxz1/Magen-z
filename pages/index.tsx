@@ -47,241 +47,217 @@ const anchoMD = keyframes`
 `;
 
 interface CarrouselCardProps {
-    i: number;
-    tapa?: boolean;
+  i: number;
+  tapa?: boolean;
 }
 const CarrouselCard = ({
-    i,
-    tapa = false,
+  zi,
+  tapa = false,
 }: CarrouselCardProps): JSX.Element => {
-    return (
-        <Box
-            h={{ base: "160px", md: "200px" }}
-            w={{ base: "160px", md: "200px" }}
-            position="absolute"
-            bg={useColorModeValue(
-                "linear-gradient(#ededed88, 40%,#096b4a)",
-                "linear-gradient(rgba(15, 10, 24, 0.5),40%,#443567)"
-            )}
-            // #40edb5
-            // #0a1713
-            top="1000px"
-            transform={{
-                base: tapa
-                    ? `rotateY(${(i - 8) * 45}deg)`
-                    : `rotateY(${i * 135}deg) translateZ(80px)`,
-                md: tapa
-                    ? `rotateY(${(i - 8) * 45}deg)`
-                    : `rotateY(${i * 135}deg) translateZ(100px)`,
-            }}
-            animation={`${topMovement} 1s ease-in-out forwards calc(100ms * ${i})`}
-        />
-    );
+  return (
+    <Box
+      h={{ base: "160px", md: "200px" }}
+      w={{ base: "160px", md: "200px" }}
+      position="absolute"
+      bg={useColorModeValue(
+        "linear-gradient(#ededed88, 40%,#096b4a)",
+        "linear-gradient(rgba(15, 10, 24, 0.5),40%,#443567)"
+      )}
+      // #40edb5
+      // #0a1713
+      top="1000px"
+      transform={{
+        base: tapa
+          ? `rotateY(${(i - 8) * 45}deg)`
+          : `rotateY(${i * 135}deg) translateZ(80px)`,
+        md: tapa
+          ? `rotateY(${(i - 8) * 45}deg)`
+          : `rotateY(${i * 135}deg) translateZ(100px)`,
+      }}
+      animation={`${topMovement} 1s ease-in-out forwards calc(100ms * ${i})`}
+    />
+  );
 };
 const Carrousel = (): JSX.Element => {
-    return (
-        <Flex
-            h="100%"
-            w="100%"
-            position="relative"
-            css="transform-style: preserve-3d"
-            justify="center"
-            align="center"
-        >
-            <Flex
-                position="absolute"
-                width="100%"
-                height="100%"
-                display="flex"
-                justify="center"
-                align="center"
-                css="transform-style: preserve-3d"
-                transform={`rotateX(${incli})`}
-                animation={`${rotate} 40s infinite linear`}
-            >
-                <CarrouselCard i={0} />
-                <CarrouselCard i={1} />
-                <CarrouselCard i={2} />
-                <CarrouselCard i={3} />
-                <CarrouselCard i={4} />
-                <CarrouselCard i={5} />
-                <CarrouselCard i={6} />
-                <CarrouselCard i={7} />
-                <CarrouselCard i={8} tapa />
-                <CarrouselCard i={9} tapa />
-                <CarrouselCard i={10} tapa />
-                <CarrouselCard i={11} tapa />
-            </Flex>
-        </Flex>
-    );
+  return (
+    <Flex
+      h="100%"
+      w="100%"
+      position="relative"
+      css="transform-style: preserve-3d"
+      justify="center"
+      align="center"
+    >
+      <Flex
+        position="absolute"
+        width="100%"
+        height="100%"
+        display="flex"
+        justify="center"
+        align="center"
+        css="transform-style: preserve-3d"
+        transform={`rotateX(${incli})`}
+        animation={`${rotate} 40s infinite linear`}
+      >
+        <CarrouselCard i={0} />
+        <CarrouselCard i={1} />
+        <CarrouselCard i={2} />
+        <CarrouselCard i={3} />
+        <CarrouselCard i={4} />
+        <CarrouselCard i={5} />
+        <CarrouselCard i={6} />
+        <CarrouselCard i={7} />
+        <CarrouselCard i={8} tapa />
+        <CarrouselCard i={9} tapa />
+        <CarrouselCard i={10} tapa />
+        <CarrouselCard i={11} tapa />
+      </Flex>
+    </Flex>
+  );
 };
 const Home = (): JSX.Element => {
-    const [aspectRatio, setAspectRatio] = useState(1);
+  const [aspectRatio, setAspectRatio] = useState(1);
 
-    useEffect(() => {
-        const resize = () => {
-            const aspectRatio = window.innerWidth / window.innerHeight;
-            // console.log(aspectRatio);
-            setAspectRatio(aspectRatio);
-        };
-        resize();
-        window.addEventListener("resize", resize);
-    }, []);
-    return (
-        <>
-            <Head>
-                <title>Magen-z dev</title>
-            </Head>
-            <Box
-                as="main"
-                color="aliceblue"
-                display="flex"
-                justify-content="right"
-                position="relative"
-                flexDirection="column"
+  useEffect(() => {
+    const resize = () => {
+      const aspectRatio = window.innerWidth / window.innerHeight;
+      // console.log(aspectRatio);
+      setAspectRatio(aspectRatio);
+    };
+    resize();
+    window.addEventListener("resize", resize);
+  }, []);
+  return (
+    <>
+      <Head>
+        <title>Magen-z dev</title>
+      </Head>
+      <Box
+        as="main"
+        color="aliceblue"
+        display="flex"
+        justify-content="right"
+        position="relative"
+        flexDirection="column"
+      >
+        <Section odd>
+          <Bars />
+          <Flex
+            bg={useColorModeValue("#00000008", "#ffffff01")}
+            borderRadius="1rem"
+            overflow="hidden"
+            w="0"
+            opacity="0"
+            display="flex"
+            justify="center"
+            align="center"
+            position="absolute"
+            left={aspectRatio < 1.25 ? "5%" : { base: "5%", md: "" }}
+            top={aspectRatio < 1.25 ? "20%" : { base: "20%", md: "40%" }}
+            fontSize={
+              aspectRatio < 1.25 ? "1rem" : { base: "1rem", md: "2rem" }
+            }
+            backdropFilter="blur(15px)"
+            padding="1rem"
+            py="2rem"
+            border={useColorModeValue(
+              "2px solid #ffffff",
+              "2px solid #ffffff0a"
+            )}
+            letterSpacing="1.5rem"
+            textIndent=" 1.5rem"
+            color={useColorModeValue("black", "white")}
+            animation={
+              aspectRatio < 1.25
+                ? `${anchoBase} 500ms ease-in-out forwards 1s`
+                : {
+                    base: `${anchoBase} 500ms ease-in-out forwards 1s`,
+                    md: `${anchoMD} 500ms ease-in-out forwards 1s`,
+                  }
+            }
+          >
+            <Flex
+              position="absolute"
+              w="1000px"
+              justify="center"
+              align="center"
             >
-                <Section odd>
-                    <Bars />
-                    <Flex
-                        bg={useColorModeValue("#00000008", "#ffffff01")}
-                        borderRadius="1rem"
-                        overflow="hidden"
-                        w="0"
-                        opacity="0"
-                        display="flex"
-                        justify="center"
-                        align="center"
-                        position="absolute"
-                        left={
-                            aspectRatio < 1.25 ? "5%" : { base: "5%", md: "" }
-                        }
-                        top={
-                            aspectRatio < 1.25
-                                ? "20%"
-                                : { base: "20%", md: "40%" }
-                        }
-                        fontSize={
-                            aspectRatio < 1.25
-                                ? "1rem"
-                                : { base: "1rem", md: "2rem" }
-                        }
-                        backdropFilter="blur(15px)"
-                        padding="1rem"
-                        py="2rem"
-                        border={useColorModeValue(
-                            "2px solid #ffffff",
-                            "2px solid #ffffff0a"
-                        )}
-                        letterSpacing="1.5rem"
-                        textIndent=" 1.5rem"
-                        color={useColorModeValue("black", "white")}
-                        animation={
-                            aspectRatio < 1.25
-                                ? `${anchoBase} 500ms ease-in-out forwards 1s`
-                                : {
-                                      base: `${anchoBase} 500ms ease-in-out forwards 1s`,
-                                      md: `${anchoMD} 500ms ease-in-out forwards 1s`,
-                                  }
-                        }
-                    >
-                        <Flex
-                            position="absolute"
-                            w="1000px"
-                            justify="center"
-                            align="center"
-                        >
-                            Magen-z
-                        </Flex>
-                    </Flex>
-                    <Flex
-                        w={
-                            aspectRatio < 1.25
-                                ? "90%"
-                                : { base: "90%", md: "35vw" }
-                        }
-                        h={
-                            aspectRatio < 1.25
-                                ? "80vw"
-                                : { base: "80vw", md: "35vw" }
-                        }
-                        bg={useColorModeValue("#ffffff33", "#00000033")}
-                        borderRadius="1rem"
-                        justify="center"
-                        align="center"
-                        direction="column"
-                        position={
-                            aspectRatio < 1.25
-                                ? "relative"
-                                : { base: "relative", md: "absolute" }
-                        }
-                        right={aspectRatio < 1.25 ? "" : { base: "", md: "5%" }}
-                        top={aspectRatio < 1.25 ? "" : { base: "", md: "15%" }}
-                        bottom={
-                            aspectRatio < 1.25 ? "5%" : { base: "5%", md: "" }
-                        }
-                        backdropFilter="blur(15px)"
-                        border={useColorModeValue(
-                            "2px solid #ffffff8a",
-                            "2px solid #ffffff0a"
-                        )}
-                        overflow="hidden"
-                        textAlign="justify"
-                        fontSize="1rem"
-                        padding="1.5rem"
-                        letterSpacing="0.1rem"
-                    >
-                        <Carrousel />
-                    </Flex>
-                </Section>
-                <Section>
-                    <Gradiante />
-                </Section>
-            </Box>
-        </>
-    );
+              Magen-z
+            </Flex>
+          </Flex>
+          <Flex
+            w={aspectRatio < 1.25 ? "90%" : { base: "90%", md: "35vw" }}
+            h={aspectRatio < 1.25 ? "80vw" : { base: "80vw", md: "35vw" }}
+            bg={useColorModeValue("#ffffff33", "#00000033")}
+            borderRadius="1rem"
+            justify="center"
+            align="center"
+            direction="column"
+            position={
+              aspectRatio < 1.25
+                ? "relative"
+                : { base: "relative", md: "absolute" }
+            }
+            right={aspectRatio < 1.25 ? "" : { base: "", md: "5%" }}
+            top={aspectRatio < 1.25 ? "" : { base: "", md: "15%" }}
+            bottom={aspectRatio < 1.25 ? "5%" : { base: "5%", md: "" }}
+            backdropFilter="blur(15px)"
+            border={useColorModeValue(
+              "2px solid #ffffff8a",
+              "2px solid #ffffff0a"
+            )}
+            overflow="hidden"
+            textAlign="justify"
+            fontSize="1rem"
+            padding="1.5rem"
+            letterSpacing="0.1rem"
+          >
+            <Carrousel />
+          </Flex>
+        </Section>
+        <Section>
+          <Gradiante />
+        </Section>
+      </Box>
+    </>
+  );
 };
 export default Home;
 
 const Gradiante = () => {
-    const [deg, setDeg] = useState(0);
-    const [deg2, setDeg2] = useState(60);
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setDeg((deg) => deg + 1);
-            setDeg2((deg2) => deg2 + 1);
-        }, 10);
-        return () => clearInterval(interval);
-    }, [deg, deg2]);
-    return (
-        <Flex
-            w="100%"
-            h="100%"
-            justify="center"
-            align="center"
-            position="relative"
+  const [deg, setDeg] = useState(0);
+  const [deg2, setDeg2] = useState(60);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setDeg((deg) => deg + 1);
+      setDeg2((deg2) => deg2 + 1);
+    }, 10);
+    return () => clearInterval(interval);
+  }, [deg, deg2]);
+  return (
+    <Flex w="100%" h="100%" justify="center" align="center" position="relative">
+      <Flex
+        w={{ base: "250px", md: "500px" }}
+        h={{ base: "250px", md: "500px" }}
+        borderRadius="50%"
+        bg={`radial-gradient( hsl(${deg2},50%,50%), hsl(${deg},50%,50%),  rgba(0,0,0,0),rgba(0,0,0,0))`}
+        justify="center"
+        align="center"
+      >
+        <Box
+          as="p"
+          position="absolute"
+          color={useColorModeValue("black", "white")}
+          fontSize="1.5rem"
+          fontWeight="bold"
+          letterSpacing="0.5rem"
+          textTransform="uppercase"
+          textAlign="center"
+          lineHeight="1.5"
         >
-            <Flex
-                w={{ base: "250px", md: "500px" }}
-                h={{ base: "250px", md: "500px" }}
-                borderRadius="50%"
-                bg={`radial-gradient( hsl(${deg2},50%,50%), hsl(${deg},50%,50%),  rgba(0,0,0,0),rgba(0,0,0,0))`}
-                justify="center"
-                align="center"
-            >
-                <Box
-                    as="p"
-                    position="absolute"
-                    color={useColorModeValue("black", "white")}
-                    fontSize="1.5rem"
-                    fontWeight="bold"
-                    letterSpacing="0.5rem"
-                    textTransform="uppercase"
-                    textAlign="center"
-                    lineHeight="1.5"
-                >
-                    Most of the time I create stuff like this
-                </Box>
-            </Flex>
-        </Flex>
-    );
+          Most of the time I create stuff like this
+        </Box>
+      </Flex>
+    </Flex>
+  );
 };
