@@ -46,6 +46,12 @@ const anchoMD = keyframes`
     }
 `;
 
+const infoAnimation = keyframes`
+    0%{opacity:0;}
+    100%{opacity:1;}
+`
+
+
 interface CarrouselCardProps {
     i: number;
     tapa?: boolean;
@@ -146,7 +152,6 @@ const Home = (): JSX.Element => {
                         bg={useColorModeValue("#00000008", "#ffffff01")}
                         borderRadius="1rem"
                         overflow="hidden"
-                        w="0"
                         opacity="0"
                         display="flex"
                         justify="center"
@@ -192,7 +197,29 @@ const Home = (): JSX.Element => {
                         >
                             Magen-z
                         </Flex>
+                       
                     </Flex>
+                   <Flex
+                        position='absolute'
+                        w={aspectRatio < 1.25 ? "90%" : { base: "90%", md: "45%" }}
+                        left={
+                            aspectRatio < 1.25 ? "5%" : { base: "5%", md: "" }
+                        }
+                        top={
+                            aspectRatio < 1.25
+                                ? "30%"
+                                : { base: "30%", md: "50%" }
+                        }
+                        justify='center'
+                        animation={
+                            `${infoAnimation} 500ms ease-in-out forwards 2s`
+                        }
+                        letterSpacing='0.1rem'
+                        opacity={0}
+                        
+                    >
+                        Full Stack developer based in Barranquilla, Colombia
+                    </Flex>  
                     <Flex
                         w={
                             aspectRatio < 1.25
