@@ -51,7 +51,7 @@ interface CarrouselCardProps {
   tapa?: boolean;
 }
 const CarrouselCard = ({
-  zi,
+  i,
   tapa = false,
 }: CarrouselCardProps): JSX.Element => {
   return (
